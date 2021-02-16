@@ -56,8 +56,9 @@ export default {
     this.dropdown = window.M.Dropdown.init(this.$refs.dropdown)
   },
   methods: {
-    logout() {
-      this.$router.push('./login')
+    async logout() {
+      await this.$store.dispatch('logout')
+      this.$router.push('./login?message=login')
     }
   },
   beforeDestroy() {
@@ -65,7 +66,6 @@ export default {
     if(this.dropdown && this.dropdown.destroy) {
       this.dropdown.destroy()
     }
-    console.log('BeforeDestroy');
   }
 }
 </script>
